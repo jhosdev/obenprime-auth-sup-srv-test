@@ -1,5 +1,6 @@
 {
   "name": "obenprime-auth-sup-srv-test",
+  "type": "module",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",

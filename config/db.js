@@ -1,31 +1,31 @@
-import {db, Table} from './db.config.js'
+import { db, Table } from './db.config.js'
 
 // Create or Update users
-const createOrUpdate = async (data = {}) =>{
+const createOrUpdate = async (data = {}) => {
     const params = {
         TableName: Table,
         Item: data
     }
 
-    try{
+    try {
         await db.put(params).promise()
         return { success: true }
-    } catch(error){
-        return { success: false}
+    } catch (error) {
+        return { success: false }
     }
 }
 
 // Read all users
-const readAllUsers = async()=>{
+const readAllUsers = async () => {
     const params = {
         TableName: Table
     }
 
-    try{
+    try {
         const { Items = [] } = await db.scan(params).promise()
         return { success: true, data: Items }
 
-    } catch(error){
+    } catch (error) {
         return { success: false, data: null }
     }
 
@@ -40,28 +40,28 @@ const getUserById = async (value, key = 'id') => {
         }
     }
     try {
-        const { Item = {} } =  await db.get(params).promise()
+        const { Item = {} } = await db.get(params).promise()
         return { success: true, data: Item }
     } catch (error) {
-        return {  success: false, data: null}        
+        return { success: false, data: null }
     }
 }
 
 // Delete User by ID
-const deleteUserById = async(value, key = 'id' ) => { 
+const deleteUserById = async (value, key = 'id') => {
     const params = {
         TableName: Table,
         Key: {
             [key]: parseInt(value)
         }
     }
-        
+
     try {
         await db.delete(params).promise()
-        return {  success: true }
+        return { success: true }
 
     } catch (error) {
-        return{ success: false }
+        return { success: false }
     }
 }
 

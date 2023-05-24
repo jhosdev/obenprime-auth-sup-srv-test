@@ -1,5 +1,5 @@
 import express from 'express'
-import { createOrUpdate, deleteUserById, getUserById, readAllUsers } from './db.js'
+import { createOrUpdate, deleteUserById, getUserById, readAllUsers } from '../config/db.js'
 
 const router = express.Router()
 
@@ -64,7 +64,5 @@ router.delete('/user/:id', async (req, res) => {
     return res.status(500).json({ success: false, message: 'Error'})
 })
   
-
-
 
 export default router
